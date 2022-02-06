@@ -14,7 +14,7 @@ public class MapScript : MonoBehaviour
     public TileBase[] waterTileBases;
     public int mapWidth = 256;
     public int mapHeight = 256;
-    private MapTile [,] mapTiles;
+    public MapTile [,] mapTiles;
 
     public TileBase tileTypeToBase(MapTileType type) {
         switch(type) {
