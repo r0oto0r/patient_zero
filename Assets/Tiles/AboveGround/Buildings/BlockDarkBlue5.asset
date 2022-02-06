@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: BlockDarkBlue5
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: 21300000, guid: c4faec8644dc7ec48820db46e8d5189b, type: 3}
-  m_DefaultGameObject: {fileID: 0}
+  m_DefaultGameObject: {fileID: 600658766823440845, guid: 6e137dd0e5754634a9b10c5833c13d89, type: 3}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
     - {fileID: 21300000, guid: c4faec8644dc7ec48820db46e8d5189b, type: 3}
-    m_GameObject: {fileID: 0}
+    m_GameObject: {fileID: 600658766823440845, guid: 6e137dd0e5754634a9b10c5833c13d89, type: 3}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
     m_PerlinScale: 0.5

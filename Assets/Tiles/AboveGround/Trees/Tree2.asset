@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Tree2
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: 21300000, guid: d2af46da6a578d7408077530af6bcfb7, type: 3}
-  m_DefaultGameObject: {fileID: 0}
+  m_DefaultGameObject: {fileID: 7386847797347498547, guid: 5919c7721f7e1a646935909bf55fd40f, type: 3}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
     - {fileID: 21300000, guid: d2af46da6a578d7408077530af6bcfb7, type: 3}
-    m_GameObject: {fileID: 0}
+    m_GameObject: {fileID: 7386847797347498547, guid: 5919c7721f7e1a646935909bf55fd40f, type: 3}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
     m_PerlinScale: 0.5

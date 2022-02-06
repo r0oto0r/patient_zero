@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: RoadGrass49
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: 21300000, guid: 515e9a84eeb75b54696d8d595d204cba, type: 3}
-  m_DefaultGameObject: {fileID: 0}
+  m_DefaultGameObject: {fileID: 8502470050520185310, guid: 6597b34540d562d49a2a09684bbe1eca, type: 3}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
     - {fileID: 21300000, guid: 515e9a84eeb75b54696d8d595d204cba, type: 3}
-    m_GameObject: {fileID: 0}
+    m_GameObject: {fileID: 8502470050520185310, guid: 6597b34540d562d49a2a09684bbe1eca, type: 3}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
     m_PerlinScale: 0.5

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Water
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: 21300000, guid: ffc2700474ce38c4f90f1ceb7ffefabf, type: 3}
-  m_DefaultGameObject: {fileID: 0}
+  m_DefaultGameObject: {fileID: 4614757165692945599, guid: 676ab533d79110d46aaa66267232a4ee, type: 3}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
     - {fileID: 21300000, guid: ffc2700474ce38c4f90f1ceb7ffefabf, type: 3}
-    m_GameObject: {fileID: 0}
+    m_GameObject: {fileID: 4614757165692945599, guid: 676ab533d79110d46aaa66267232a4ee, type: 3}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
     m_PerlinScale: 0.5

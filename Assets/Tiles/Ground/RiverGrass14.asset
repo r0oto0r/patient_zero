@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: RiverGrass14
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: 21300000, guid: 03d2f68a38f568c4791fbf1148afceb8, type: 3}
-  m_DefaultGameObject: {fileID: 0}
+  m_DefaultGameObject: {fileID: 8731905720501421965, guid: fd5f12b629a49834590ffddf67eae906, type: 3}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
     - {fileID: 21300000, guid: 03d2f68a38f568c4791fbf1148afceb8, type: 3}
-    m_GameObject: {fileID: 0}
+    m_GameObject: {fileID: 8731905720501421965, guid: fd5f12b629a49834590ffddf67eae906, type: 3}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
     m_PerlinScale: 0.5

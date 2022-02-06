@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: CarPicupOrange5
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: 21300000, guid: 16b967d1a069dd542851476ef0031082, type: 3}
-  m_DefaultGameObject: {fileID: 0}
+  m_DefaultGameObject: {fileID: 7243054111684366698, guid: 58d3b20a2caffbd489559e8165e5871a, type: 3}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
     - {fileID: 21300000, guid: 16b967d1a069dd542851476ef0031082, type: 3}
-    m_GameObject: {fileID: 0}
+    m_GameObject: {fileID: 7243054111684366698, guid: 58d3b20a2caffbd489559e8165e5871a, type: 3}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
     m_PerlinScale: 0.5

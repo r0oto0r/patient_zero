@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: BlockGrey3
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: 21300000, guid: 0e41cadf09ae53e46af004d88bb03e85, type: 3}
-  m_DefaultGameObject: {fileID: 0}
+  m_DefaultGameObject: {fileID: 8158550262933424672, guid: a26147fbd89565f43bf7bc1ca46a25ed, type: 3}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
     - {fileID: 21300000, guid: 0e41cadf09ae53e46af004d88bb03e85, type: 3}
-    m_GameObject: {fileID: 0}
+    m_GameObject: {fileID: 8158550262933424672, guid: a26147fbd89565f43bf7bc1ca46a25ed, type: 3}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
     m_PerlinScale: 0.5
