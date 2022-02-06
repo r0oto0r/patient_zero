@@ -9,8 +9,8 @@
                 <ui:Label text="Pos:" display-tooltip-when-elided="true" name="TilePosLabel" style="color: rgb(255, 255, 255); width: 40px;" />
             </ui:VisualElement>
             <ui:VisualElement style="height: auto; position: absolute; right: 0; top: 120px; left: 60px;">
-                <ui:Label text="TilePosValue" display-tooltip-when-elided="true" name="TilePosValueLabel" style="color: rgb(255, 255, 255); align-items: stretch;" />
                 <ui:Label text="TileNameValue" display-tooltip-when-elided="true" name="TileNameValueLabel" style="color: rgb(255, 255, 255); -unity-text-outline-color: rgb(0, 0, 0);" />
+                <ui:Label text="TilePosValue" display-tooltip-when-elided="true" name="TilePosValueLabel" style="color: rgb(255, 255, 255); align-items: stretch;" />
             </ui:VisualElement>
         </ui:GroupBox>
         <ui:VisualElement style="align-items: center;">

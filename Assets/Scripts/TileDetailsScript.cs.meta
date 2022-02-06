@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: df403d5e11b5abc419d7b2aaab5dae1c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - mainGridObject: {instanceID: 0}
+  - tileCursor: {instanceID: 0}
+  - tileIndicator: {instanceID: 0}
+  - tileDetailsWindow: {fileID: 1301615293839289661, guid: 6f14904245c465d4ca1ae6783ee8f620, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
