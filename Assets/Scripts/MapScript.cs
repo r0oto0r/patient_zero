@@ -14,8 +14,9 @@ public class MapScript : MonoBehaviour
     public RuleTile[] waterTileBases;
     public int mapWidth = 256;
     public int mapHeight = 256;
-    public GroundTileScript [,] groundTiles;
-    public ObjectTileScript [,] objectTiles;
+    public int numLayers = 2;
+    public GameObject [,] groundTiles;
+    public GameObject [,,] objectTiles;
     private Tilemap groundTileMap;
     private Tilemap firstTileMap;
 
@@ -31,10 +32,47 @@ public class MapScript : MonoBehaviour
         return true;
     }
 
+    public GameObject GetGroundTileAt(Vector3Int pos) {
+        if(pos.x < mapWidth && pos.y < mapHeight) {
+            return groundTiles[pos.x, pos.y];
+        }
+
+        return null;
+    }
+
+    public GameObject[] GetObjectsAt(Vector3Int pos) {
+        if(pos.x < mapWidth && pos.y < mapHeight) {
+            List<GameObject> gameObjects = new List<GameObject>();
+            for(int i = 0; i < numLayers; ++i) {
+                gameObjects.Add(objectTiles[i, pos.x, pos.y]);
+            }
+
+            return gameObjects.ToArray();
+        }
+
+        return null;
+    }
+
+    public int GetMalusAt(Vector3Int pos) {
+        GameObject groundTile = GetGroundTileAt(pos);
+        GameObject[] objectTiles = GetObjectsAt(pos);
+        int malus = 0;
+        if(groundTile) {
+            malus += groundTile.GetComponent<GroundTileScript>().malus;
+        }
+        if(objectTiles != null && objectTiles.Length > 0) {
+            foreach(GameObject objectTile in objectTiles) {
+               malus += objectTile.GetComponent<GroundTileScript>().malus; 
+            }
+        }
+
+        return malus;
+    }
+
     void Start()
     {
-        groundTiles = new GroundTileScript[mapWidth, mapHeight];
-        objectTiles = new ObjectTileScript[mapWidth, mapHeight];
+        groundTiles = new GameObject[mapWidth, mapHeight];
+        objectTiles = new GameObject[numLayers, mapWidth, mapHeight];
 
         groundTileMap = groundLayer.GetComponent<Tilemap>();
         firstTileMap = firstLayer.GetComponent<Tilemap>();
@@ -45,24 +83,20 @@ public class MapScript : MonoBehaviour
                 if(!groundTileMap.HasTile(curPos)) {
                     groundTileMap.SetTile(curPos, grassTileBase);
                 }
-                RuleTile existingGroundTile = groundTileMap.GetTile<RuleTile>(curPos);
-                groundTiles[i,j] = existingGroundTile.m_DefaultGameObject.GetComponent<GroundTileScript>();
+                groundTiles[i, j] = groundTileMap.GetInstantiatedObject(curPos);
 
                 if(Random.Range(0, 3) == 1) {
                     if(!firstTileMap.HasTile(curPos)) {
-                        if(objectCanBePlaced(objGrassTileBase.m_DefaultGameObject.GetComponent<ObjectTileScript>(), groundTiles[i,j])) {
+                        if(objectCanBePlaced(objGrassTileBase.m_DefaultGameObject.GetComponent<ObjectTileScript>(), groundTiles[i, j].GetComponent<GroundTileScript>())) {
                             firstTileMap.SetTile(curPos, objGrassTileBase);
                         }
                     }
-                    Tile existingObjectTile = groundTileMap.GetTile<Tile>(curPos);
-                    objectTiles[i,j] = existingGroundTile.m_DefaultGameObject.GetComponent<ObjectTileScript>();
+                    objectTiles[0, i, j] = firstTileMap.GetInstantiatedObject(curPos);
                 }
             }
         }
     }
 
-    void Update()
-    {
-        
+    void Update() {
     }
 }

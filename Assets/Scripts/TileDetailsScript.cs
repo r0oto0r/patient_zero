@@ -40,7 +40,9 @@ public class TileDetailsScript : MonoBehaviour
 			Vector3Int cellPos = tileMap.WorldToCell(mouseWorldPos);
 
             if(cellPos.x >= 0 && cellPos.y >= 0 && cellPos.x < mapScript.mapWidth && cellPos.y < mapScript.mapHeight && tileMap.HasTile(cellPos)) {
-                RuleTile tileAtPos = tileMap.GetTile<RuleTile>(cellPos);
+                GameObject groundTile = mapScript.GetGroundTileAt(cellPos);
+                RuleTile groundRuleTile = tileMap.GetTile<RuleTile>(cellPos);
+
                 Vector3 cellCenterPosition = mainGrid.GetCellCenterWorld(cellPos);
                 Vector3 newTileCursorPos = new Vector3(cellCenterPosition.x, cellCenterPosition.y + tileCursor.GetComponent<SpriteRenderer>().bounds.size.y / 2.0f, 0);
 
@@ -63,16 +65,16 @@ public class TileDetailsScript : MonoBehaviour
                 Label cellIsRiverValueLabel = rootVisualElement.Q<Label>("TileIsRiverValueLabel");
                 VisualElement tileImage = rootVisualElement.Q<VisualElement>("TileImage");
 
-				GroundTileScript groundTileScript = tileAtPos.m_DefaultGameObject.GetComponent<GroundTileScript>();
+				GroundTileScript groundTileScript = groundTile.GetComponent<GroundTileScript>();
 
-                cellNameValueLabel.text = tileAtPos.name;
+                cellNameValueLabel.text = groundTile.name;
                 cellPosValueLabel.text = $"{cellPos}";
 				cellIsBlockedValueLabel.text = groundTileScript.isBlocked ? "true" : "false";
 				cellTypeValueLabel.text = Enum.GetName(typeof(GroundTileType), groundTileScript.type);
-				cellMalusValueLabel.text = $"{groundTileScript.malus}";
+				cellMalusValueLabel.text = $"{mapScript.GetMalusAt(cellPos)}";
 				cellIsRoadValueLabel.text = groundTileScript.isRoad ? "true" : "false";
 				cellIsRiverValueLabel.text = groundTileScript.isRiver ? "true" : "false";
-				tileImage.style.backgroundImage = new StyleBackground(tileAtPos.m_DefaultSprite);
+				tileImage.style.backgroundImage = new StyleBackground(groundRuleTile.m_DefaultSprite);
 
                 timer = 0f;
             }

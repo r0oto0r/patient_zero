@@ -7,9 +7,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4930127833174332243, guid: f23d1a171d2e474419f624927212ad4c, type: 3}
+      propertyPath: type
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4930127833174332243, guid: f23d1a171d2e474419f624927212ad4c, type: 3}
+      propertyPath: isObject
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6255560202625764308, guid: f23d1a171d2e474419f624927212ad4c, type: 3}
       propertyPath: m_Name
-      value: ObjectTileGameObject
+      value: CarPicupOrange5
       objectReference: {fileID: 0}
     - target: {fileID: 7034883880342102624, guid: f23d1a171d2e474419f624927212ad4c, type: 3}
       propertyPath: m_RootOrder

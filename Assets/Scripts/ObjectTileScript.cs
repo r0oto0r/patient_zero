@@ -7,7 +7,8 @@ public enum ObjectTileType {
     NONE,
     BUILDING,
     GRASS,
-    TREE
+    TREE,
+    CAR
 }
 
 public class ObjectTileScript : MapTileScript {

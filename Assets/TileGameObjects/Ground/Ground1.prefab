@@ -7,9 +7,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2769814035629373745, guid: d33323b057d3ba84e9f787e3e90369ad, type: 3}
+      propertyPath: malus
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6255560202625764308, guid: d33323b057d3ba84e9f787e3e90369ad, type: 3}
       propertyPath: m_Name
-      value: TileGameObject
+      value: Ground1
       objectReference: {fileID: 0}
     - target: {fileID: 7034883880342102624, guid: d33323b057d3ba84e9f787e3e90369ad, type: 3}
       propertyPath: m_RootOrder
