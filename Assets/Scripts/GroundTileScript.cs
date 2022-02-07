@@ -12,8 +12,6 @@ public enum GroundTileType {
 public class GroundTileScript : MapTileScript {
     public  GroundTileType type;
     public bool isRoad;
-    public bool isBuilding;
-    public bool isCar;
     public bool isRiver;
 
     void Start() {

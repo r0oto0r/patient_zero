@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: isRoad
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -2769814035629373745, guid: d33323b057d3ba84e9f787e3e90369ad, type: 3}
+      propertyPath: isRiver
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6255560202625764308, guid: d33323b057d3ba84e9f787e3e90369ad, type: 3}
       propertyPath: m_Name
       value: RoadGrass86

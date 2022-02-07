@@ -45,8 +45,8 @@ public class MapScript : MonoBehaviour
                 if(!groundTileMap.HasTile(curPos)) {
                     groundTileMap.SetTile(curPos, grassTileBase);
                 }
-                RuleTile existingGroundTile = groundTileMap.GetTile<Tile>(curPos);
-                groundTiles[i,j] = existingGroundTile.gameObject.GetComponent<GroundTileScript>();
+                RuleTile existingGroundTile = groundTileMap.GetTile<RuleTile>(curPos);
+                groundTiles[i,j] = existingGroundTile.m_DefaultGameObject.GetComponent<GroundTileScript>();
 
                 if(Random.Range(0, 3) == 1) {
                     if(!firstTileMap.HasTile(curPos)) {
@@ -55,7 +55,7 @@ public class MapScript : MonoBehaviour
                         }
                     }
                     Tile existingObjectTile = groundTileMap.GetTile<Tile>(curPos);
-                    objectTiles[i,j] = existingGroundTile.gameObject.GetComponent<ObjectTileScript>();
+                    objectTiles[i,j] = existingGroundTile.m_DefaultGameObject.GetComponent<ObjectTileScript>();
                 }
             }
         }

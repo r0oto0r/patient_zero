@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
@@ -38,11 +39,11 @@ public class TileDetailsScript : MonoBehaviour
 			Tilemap tileMap = groundLayer.GetComponent<Tilemap>();
 			Vector3Int cellPos = tileMap.WorldToCell(mouseWorldPos);
 
-            if(cellPos.x >= 0 && cellPos.y >= 0 && cellPos.x < mapScript.mapWidth && cellPos.y < mapScript.mapHeight) {
+            if(cellPos.x >= 0 && cellPos.y >= 0 && cellPos.x < mapScript.mapWidth && cellPos.y < mapScript.mapHeight && tileMap.HasTile(cellPos)) {
                 RuleTile tileAtPos = tileMap.GetTile<RuleTile>(cellPos);
                 Vector3 cellCenterPosition = mainGrid.GetCellCenterWorld(cellPos);
                 Vector3 newTileCursorPos = new Vector3(cellCenterPosition.x, cellCenterPosition.y + tileCursor.GetComponent<SpriteRenderer>().bounds.size.y / 2.0f, 0);
-                
+
                 tileCursor.transform.position = newTileCursorPos;
                 tileCursor.SetActive(true);
 
@@ -55,11 +56,23 @@ public class TileDetailsScript : MonoBehaviour
                 VisualElement rootVisualElement = tileDetailsWindow.GetComponent<UIDocument>().rootVisualElement;
                 Label cellNameValueLabel = rootVisualElement.Q<Label>("TileNameValueLabel");
                 Label cellPosValueLabel = rootVisualElement.Q<Label>("TilePosValueLabel");
+				Label cellIsBlockedValueLabel = rootVisualElement.Q<Label>("TileIsBlockedValueLabel");
+                Label cellTypeValueLabel = rootVisualElement.Q<Label>("TileTypeValueLabel");
+				Label cellMalusValueLabel = rootVisualElement.Q<Label>("TileMalusValueLabel");
+				Label cellIsRoadValueLabel = rootVisualElement.Q<Label>("TileIsRoadValueLabel");
+                Label cellIsRiverValueLabel = rootVisualElement.Q<Label>("TileIsRiverValueLabel");
                 VisualElement tileImage = rootVisualElement.Q<VisualElement>("TileImage");
-                tileImage.style.backgroundImage = new StyleBackground(tileAtPos.m_DefaultSprite);
 
-                cellPosValueLabel.text = $"{cellPos}";
+				GroundTileScript groundTileScript = tileAtPos.m_DefaultGameObject.GetComponent<GroundTileScript>();
+
                 cellNameValueLabel.text = tileAtPos.name;
+                cellPosValueLabel.text = $"{cellPos}";
+				cellIsBlockedValueLabel.text = groundTileScript.isBlocked ? "true" : "false";
+				cellTypeValueLabel.text = Enum.GetName(typeof(GroundTileType), groundTileScript.type);
+				cellMalusValueLabel.text = $"{groundTileScript.malus}";
+				cellIsRoadValueLabel.text = groundTileScript.isRoad ? "true" : "false";
+				cellIsRiverValueLabel.text = groundTileScript.isRiver ? "true" : "false";
+				tileImage.style.backgroundImage = new StyleBackground(tileAtPos.m_DefaultSprite);
 
                 timer = 0f;
             }
