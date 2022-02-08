@@ -44,7 +44,10 @@ public class MapScript : MonoBehaviour
         if(pos.x < mapWidth && pos.y < mapHeight) {
             List<GameObject> gameObjects = new List<GameObject>();
             for(int i = 0; i < numLayers; ++i) {
-                gameObjects.Add(objectTiles[i, pos.x, pos.y]);
+                GameObject objectAtTile = objectTiles[i, pos.x, pos.y];
+                if(objectAtTile) {
+                    gameObjects.Add(objectAtTile);
+                }
             }
 
             return gameObjects.ToArray();
@@ -62,7 +65,7 @@ public class MapScript : MonoBehaviour
         }
         if(objectTiles != null && objectTiles.Length > 0) {
             foreach(GameObject objectTile in objectTiles) {
-               malus += objectTile.GetComponent<GroundTileScript>().malus; 
+               malus += objectTile.GetComponent<ObjectTileScript>().malus; 
             }
         }
 

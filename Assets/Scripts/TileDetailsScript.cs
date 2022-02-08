@@ -67,7 +67,7 @@ public class TileDetailsScript : MonoBehaviour
 
 				GroundTileScript groundTileScript = groundTile.GetComponent<GroundTileScript>();
 
-                cellNameValueLabel.text = groundTile.name;
+                cellNameValueLabel.text = groundRuleTile.name;
                 cellPosValueLabel.text = $"{cellPos}";
 				cellIsBlockedValueLabel.text = groundTileScript.isBlocked ? "true" : "false";
 				cellTypeValueLabel.text = Enum.GetName(typeof(GroundTileType), groundTileScript.type);
