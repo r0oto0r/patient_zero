@@ -4,23 +4,19 @@ using UnityEngine;
 
 public class CameraMovementBehaviour : MonoBehaviour
 {
-    public GameObject mainMapObject;
-    public GameObject mainGridObject;
+    public MapScript mainMapScript;
+    public Grid mainGrid;
     private Camera mainCam;
-    private MapScript mainMapScript;
-    private Grid mainGrid;
     private bool scroll = false;
-    public Vector3 bottom;
-    public Vector3 left;
-    public Vector3 top;
-    public Vector3 right;
-    public Vector3 cellSize;
+    private Vector3 bottom;
+    private Vector3 left;
+    private Vector3 top;
+    private Vector3 right;
+    private Vector3 cellSize;
     public float mouseSensivity = 0.4f;
     public float keyBoardSensivity = 0.1f;
     void Start() {
         mainCam = GetComponent<Camera>();
-        mainMapScript = mainMapObject.GetComponent<MapScript>();
-        mainGrid = mainGridObject.GetComponent<Grid>();
 
         bottom = mainGrid.CellToWorld(new Vector3Int(0, 0));
         left = mainGrid.CellToWorld(new Vector3Int(0, mainMapScript.mapHeight - 1));

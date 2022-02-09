@@ -7,22 +7,17 @@ using UnityEngine.UIElements;
 
 public class TileDetailsScript : MonoBehaviour
 {	
-    public GameObject mainGridObject;
+    public GameObject tileDetailsWindow;
     public GameObject tileCursor;
 	public GameObject tileIndicator;
-    private Grid mainGrid;
-    public GameObject tileDetailsWindow;
-    private GameObject groundLayer;
-    public GameObject map;
-    private MapScript mapScript;
+    public Grid mainGrid;
+    public Tilemap groundLayer;
+    public MapScript mapScript;
 	private bool tileDetailsWindowOpen = false;
     float timer = 0.0f;
 
     void Start()
     {
-        mapScript = map.GetComponent<MapScript>();
-        mainGrid = mainGridObject.GetComponent<Grid>();
-        groundLayer = GameObject.Find("Ground");
 		tileDetailsWindow.SetActive(false);
     }
 
@@ -36,12 +31,11 @@ public class TileDetailsScript : MonoBehaviour
 		if(Input.GetMouseButtonDown(0)) {
 			Vector3 mousePos = Input.mousePosition;
 			Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePos);
-			Tilemap tileMap = groundLayer.GetComponent<Tilemap>();
-			Vector3Int cellPos = tileMap.WorldToCell(mouseWorldPos);
+			Vector3Int cellPos = groundLayer.WorldToCell(mouseWorldPos);
 
-            if(cellPos.x >= 0 && cellPos.y >= 0 && cellPos.x < mapScript.mapWidth && cellPos.y < mapScript.mapHeight && tileMap.HasTile(cellPos)) {
+            if(cellPos.x >= 0 && cellPos.y >= 0 && cellPos.x < mapScript.mapWidth && cellPos.y < mapScript.mapHeight && groundLayer.HasTile(cellPos)) {
                 GameObject groundTile = mapScript.GetGroundTileAt(cellPos);
-                RuleTile groundRuleTile = tileMap.GetTile<RuleTile>(cellPos);
+                RuleTile groundRuleTile = groundLayer.GetTile<RuleTile>(cellPos);
 
                 Vector3 cellCenterPosition = mainGrid.GetCellCenterWorld(cellPos);
                 Vector3 newTileCursorPos = new Vector3(cellCenterPosition.x, cellCenterPosition.y + tileCursor.GetComponent<SpriteRenderer>().bounds.size.y / 2.0f, 0);
@@ -63,6 +57,7 @@ public class TileDetailsScript : MonoBehaviour
 				Label cellMalusValueLabel = rootVisualElement.Q<Label>("TileMalusValueLabel");
 				Label cellIsRoadValueLabel = rootVisualElement.Q<Label>("TileIsRoadValueLabel");
                 Label cellIsRiverValueLabel = rootVisualElement.Q<Label>("TileIsRiverValueLabel");
+                Label cellNumObjectsValueLabel = rootVisualElement.Q<Label>("TileNumObjectsValueLabel");
                 VisualElement tileImage = rootVisualElement.Q<VisualElement>("TileImage");
 
 				GroundTileScript groundTileScript = groundTile.GetComponent<GroundTileScript>();
@@ -74,6 +69,7 @@ public class TileDetailsScript : MonoBehaviour
 				cellMalusValueLabel.text = $"{mapScript.GetMalusAt(cellPos)}";
 				cellIsRoadValueLabel.text = groundTileScript.isRoad ? "true" : "false";
 				cellIsRiverValueLabel.text = groundTileScript.isRiver ? "true" : "false";
+                cellNumObjectsValueLabel.text = $"{mapScript.GetObjectCount(cellPos)}";
 				tileImage.style.backgroundImage = new StyleBackground(groundRuleTile.m_DefaultSprite);
 
                 timer = 0f;

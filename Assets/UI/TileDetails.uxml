@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement style="flex-grow: 0; background-color: rgba(45, 45, 45, 0.53); width: 187px; height: 331px; position: absolute; top: 0; right: 0; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; border-bottom-width: 3px;">
+    <ui:VisualElement style="flex-grow: 0; background-color: rgba(45, 45, 45, 0.53); width: 187px; height: 351px; position: absolute; top: 0; right: 0; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; border-bottom-width: 3px;">
         <ui:GroupBox style="align-items: center;">
             <ui:Label text="Name" display-tooltip-when-elided="true" name="TileNameValueLabel" style="position: relative; left: auto; align-items: center; top: auto; font-size: 22px; color: rgb(255, 255, 255);" />
         </ui:GroupBox>
@@ -14,6 +14,7 @@
                 <ui:Label text="Malus:" display-tooltip-when-elided="true" name="TileMalusLabel" style="color: rgb(255, 255, 255); width: 40px;" />
                 <ui:Label text="Road:" display-tooltip-when-elided="true" name="TileIsRoadLabel" style="color: rgb(255, 255, 255); width: 40px;" />
                 <ui:Label text="River:" display-tooltip-when-elided="true" name="TileIsRiverLabel" style="color: rgb(255, 255, 255); width: 40px;" />
+                <ui:Label text="#Object:" display-tooltip-when-elided="true" name="TileIsNumObjectLabel" style="color: rgb(255, 255, 255); width: 40px;" />
             </ui:VisualElement>
             <ui:VisualElement style="height: auto; position: absolute; right: 0; top: 0; left: 86px;">
                 <ui:Label text="pos" display-tooltip-when-elided="true" name="TilePosValueLabel" style="color: rgb(255, 255, 255); align-items: stretch;" />
@@ -22,6 +23,7 @@
                 <ui:Label text="malus" display-tooltip-when-elided="true" name="TileMalusValueLabel" style="color: rgb(255, 255, 255); align-items: stretch;" />
                 <ui:Label text="road" display-tooltip-when-elided="true" name="TileIsRoadValueLabel" style="color: rgb(255, 255, 255); align-items: stretch;" />
                 <ui:Label text="river" display-tooltip-when-elided="true" name="TileIsRiverValueLabel" style="color: rgb(255, 255, 255); align-items: stretch;" />
+                <ui:Label text="#objects" display-tooltip-when-elided="true" name="TileNumObjectsValueLabel" style="color: rgb(255, 255, 255); align-items: stretch;" />
             </ui:VisualElement>
         </ui:GroupBox>
     </ui:VisualElement>

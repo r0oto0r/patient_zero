@@ -5,20 +5,14 @@ using UnityEngine.Tilemaps;
 
 public class MapScript : MonoBehaviour
 {
-    public GameObject groundLayer;
-    public GameObject firstLayer;
-    public GameObject secondLayer;
+    public Tilemap groundLayer;
+    public Tilemap[] objectLayers;
 	public RuleTile grassTileBase;
     public RuleTile objGrassTileBase;
-    public RuleTile[] roadTileBases;
-    public RuleTile[] waterTileBases;
     public int mapWidth = 256;
     public int mapHeight = 256;
-    public int numLayers = 2;
-    public GameObject [,] groundTiles;
-    public GameObject [,,] objectTiles;
-    private Tilemap groundTileMap;
-    private Tilemap firstTileMap;
+    private GameObject [,] groundTiles;
+    private GameObject [,,] objectTiles;
 
     private bool objectCanBePlaced(ObjectTileScript objectTileScript, GroundTileScript groundTileScript) {
         if(!objectTileScript.canBePlacedOnWater && (groundTileScript.isRiver || groundTileScript.type == GroundTileType.WATER)) {
@@ -43,7 +37,7 @@ public class MapScript : MonoBehaviour
     public GameObject[] GetObjectsAt(Vector3Int pos) {
         if(pos.x < mapWidth && pos.y < mapHeight) {
             List<GameObject> gameObjects = new List<GameObject>();
-            for(int i = 0; i < numLayers; ++i) {
+            for(int i = 0; i < objectLayers.Length; ++i) {
                 GameObject objectAtTile = objectTiles[i, pos.x, pos.y];
                 if(objectAtTile) {
                     gameObjects.Add(objectAtTile);
@@ -56,9 +50,23 @@ public class MapScript : MonoBehaviour
         return null;
     }
 
+    public int GetObjectCount(Vector3Int pos) {
+        int total = 0;
+        if(pos.x < mapWidth && pos.y < mapHeight) {
+            for(int i = 0; i < objectLayers.Length; ++i) {
+                if(objectTiles[i, pos.x, pos.y]) {
+                    total++;
+                }
+            }
+        }
+
+        return total;
+    }
+
     public int GetMalusAt(Vector3Int pos) {
         GameObject groundTile = GetGroundTileAt(pos);
         GameObject[] objectTiles = GetObjectsAt(pos);
+
         int malus = 0;
         if(groundTile) {
             malus += groundTile.GetComponent<GroundTileScript>().malus;
@@ -75,26 +83,25 @@ public class MapScript : MonoBehaviour
     void Start()
     {
         groundTiles = new GameObject[mapWidth, mapHeight];
-        objectTiles = new GameObject[numLayers, mapWidth, mapHeight];
-
-        groundTileMap = groundLayer.GetComponent<Tilemap>();
-        firstTileMap = firstLayer.GetComponent<Tilemap>();
+        objectTiles = new GameObject[objectLayers.Length, mapWidth, mapHeight];
 
         for(int i = 0; i < mapWidth; ++i) {
             for(int j = 0; j< mapHeight; ++j) {
                 Vector3Int curPos = new Vector3Int(i, j);
-                if(!groundTileMap.HasTile(curPos)) {
-                    groundTileMap.SetTile(curPos, grassTileBase);
+                if(!groundLayer.HasTile(curPos)) {
+                    groundLayer.SetTile(curPos, grassTileBase);
                 }
-                groundTiles[i, j] = groundTileMap.GetInstantiatedObject(curPos);
-
-                if(Random.Range(0, 3) == 1) {
-                    if(!firstTileMap.HasTile(curPos)) {
-                        if(objectCanBePlaced(objGrassTileBase.m_DefaultGameObject.GetComponent<ObjectTileScript>(), groundTiles[i, j].GetComponent<GroundTileScript>())) {
-                            firstTileMap.SetTile(curPos, objGrassTileBase);
+                groundTiles[i, j] = groundLayer.GetInstantiatedObject(curPos);
+                
+                for(int k = 0; k < objectLayers.Length; ++k) {
+                    if(!objectLayers[k].HasTile(curPos)) {
+                        if(k == 0 && Random.Range(0, 3) == 1) {
+                            if(objectCanBePlaced(objGrassTileBase.m_DefaultGameObject.GetComponent<ObjectTileScript>(), groundTiles[i, j].GetComponent<GroundTileScript>())) {
+                                objectLayers[k].SetTile(curPos, objGrassTileBase);
+                            }
                         }
                     }
-                    objectTiles[0, i, j] = firstTileMap.GetInstantiatedObject(curPos);
+                    objectTiles[k, i, j] = objectLayers[k].GetInstantiatedObject(curPos);
                 }
             }
         }
