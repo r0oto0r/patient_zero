@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraMovementBehaviour : MonoBehaviour
+public class CameraMovementScript : MonoBehaviour
 {
     public MapScript mainMapScript;
     public Grid mainGrid;

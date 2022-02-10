@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: 21300000, guid: 7b8029049702d844ea57224ba74904a3, type: 3}
-  m_DefaultGameObject: {fileID: 582979053392664211, guid: a912b6b9eb07efb4bb082028519f3b0b, type: 3}
+  m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
     - {fileID: 21300000, guid: 7b8029049702d844ea57224ba74904a3, type: 3}
-    m_GameObject: {fileID: 582979053392664211, guid: a912b6b9eb07efb4bb082028519f3b0b, type: 3}
+    m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
     m_PerlinScale: 0.5
