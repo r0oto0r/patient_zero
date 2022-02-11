@@ -8,7 +8,8 @@ public class PlayerScript : MonoBehaviour
     public Vector3Int position = new Vector3Int(0, 0, 0);
     public Tilemap unitTileMap;
     public TileBase playerTileBase;
-    private Vector3 oldMouseWorldPos;
+    private Vector3Int oldMouseCellPos;
+	public MapScript mapScript;
 
     void Start()
     {
@@ -18,10 +19,11 @@ public class PlayerScript : MonoBehaviour
         private void handleMouseDown(int key) {
         Vector3 mousePos = Input.mousePosition;
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePos);
+		Vector3Int mouseCellPos = unitTileMap.WorldToCell(mouseWorldPos);
 
         switch(key) {
             case 0:
-                oldMouseWorldPos = mouseWorldPos;
+                oldMouseCellPos = mouseCellPos;
                 break;
             default:
                 break;
@@ -31,10 +33,11 @@ public class PlayerScript : MonoBehaviour
     private void handleMouseUp(int key) {
         Vector3 mousePos = Input.mousePosition;
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePos);
+		Vector3Int mouseCellPos = unitTileMap.WorldToCell(mouseWorldPos);
 
         switch(key) {
             case 0:
-                if(oldMouseWorldPos == mouseWorldPos) {
+                if(oldMouseCellPos == mouseCellPos) {
                     moveToPos(unitTileMap.WorldToCell(mouseWorldPos));
                 }
                 break;
@@ -53,8 +56,10 @@ public class PlayerScript : MonoBehaviour
         }
     }
     public void moveToPos(Vector3Int position) {
-        unitTileMap.SetTile(this.position, null);
-        unitTileMap.SetTile(position, playerTileBase);
-        this.position = position;
+		if(!mapScript.GetBlockedAt(position)) {
+			unitTileMap.SetTile(this.position, null);
+			unitTileMap.SetTile(position, playerTileBase);
+			this.position = position;
+		}
     }
 }

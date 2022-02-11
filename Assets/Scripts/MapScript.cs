@@ -73,11 +73,29 @@ public class MapScript : MonoBehaviour
         }
         if(objectTiles != null && objectTiles.Length > 0) {
             foreach(GameObject objectTile in objectTiles) {
-               malus += objectTile.GetComponent<ObjectTileScript>().malus; 
+				malus += objectTile.GetComponent<ObjectTileScript>().malus; 
             }
         }
 
         return malus;
+    }
+
+	public bool GetBlockedAt(Vector3Int pos) {
+        GameObject groundTile = GetGroundTileAt(pos);
+        GameObject[] objectTiles = GetObjectsAt(pos);
+
+        if(!groundTile || groundTile.GetComponent<GroundTileScript>().isBlocked) {
+            return true;
+        }
+        if(objectTiles != null && objectTiles.Length > 0) {
+            foreach(GameObject objectTile in objectTiles) {
+				if(objectTile.GetComponent<ObjectTileScript>().isBlocked) {
+					return true;
+				} 
+            }
+        }
+
+        return false;
     }
 
     void Start()

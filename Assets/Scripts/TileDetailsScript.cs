@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 
 public class TileDetailsScript : MonoBehaviour
-{	
+{
     public GameObject tileDetailsWindow;
     public GameObject tileCursor;
 	public GameObject tileIndicator;

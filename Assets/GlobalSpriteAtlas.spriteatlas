@@ -533,7 +533,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 28a5b004e943fe043ad09a611e80499a, type: 3}
   - {fileID: 21300000, guid: 629d0504424c27644afd49de4f7b1ef6, type: 3}
   - {fileID: 21300000, guid: 0fcf95040d0aaf749a9b91837fa2c80e, type: 3}
-  - {fileID: 21300000, guid: 7b8029049702d844ea57224ba74904a3, type: 3}
   - {fileID: 21300000, guid: f99e0b044cdcd2248bd05c23b5065fb6, type: 3}
   - {fileID: 21300000, guid: 9bfeac04392daf14389980e642e28d27, type: 3}
   - {fileID: 21300000, guid: 683a3e04897bd7b43808e0f0029c07b2, type: 3}
@@ -621,6 +620,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: aa6772c492ef93a4fa833ed354250e9e, type: 3}
   - {fileID: 21300000, guid: 370d53c423bac4b47b53a152b9a6a12a, type: 3}
   - {fileID: 21300000, guid: 83f799c498fe5954997c751f6261c7bd, type: 3}
+  - {fileID: 21300000, guid: 7057c9c42ef35544993cd01000417709, type: 3}
   - {fileID: 21300000, guid: 4bd03dc4c4e689b47b48851021ac01fa, type: 3}
   - {fileID: 21300000, guid: 05f5a0d46470d3d439ae6dac0d1c16b2, type: 3}
   - {fileID: 21300000, guid: 60c2b0d46b30ec9458fb6f5f31c2fa4e, type: 3}
@@ -2298,7 +2298,6 @@ SpriteAtlas:
   - car_truck_grey(7)
   - poceta_02
   - train_white_white(2)
-  - player1
   - sand(7)
   - block_white_blue(2)
   - train_white_dark_blue(2)
@@ -2386,6 +2385,7 @@ SpriteAtlas:
   - road_snow(20)
   - train_grey_red(16)
   - road_sand(85)
+  - P1
   - block_orange(2)
   - road_snow(6)
   - road_snow_ice(8)

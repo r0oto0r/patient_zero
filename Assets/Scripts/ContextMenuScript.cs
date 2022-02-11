@@ -5,22 +5,22 @@ using UnityEngine.UIElements;
 public class ContextMenuScript : MonoBehaviour
 {
     public GameObject contextMenuWindow;
-    private Vector3 oldMouseWorldPos;
+    private Vector3 oldMouseViewPortPos;
     void Start()
     {
-        contextMenuWindow.SetActive(false);
+		contextMenuWindow.SetActive(false);
     }
 
     private void handleMouseDown(int key) {
         Vector3 mousePos = Input.mousePosition;
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePos);
+        Vector3 mouseViewPortPos = Camera.main.ScreenToViewportPoint(new Vector3(mousePos.x, -mousePos.y, mousePos.z));
 
         switch(key) {
             case 0:
                 contextMenuWindow.SetActive(false);
                 break;
             case 1:
-                oldMouseWorldPos = mouseWorldPos;
+                oldMouseViewPortPos = mouseViewPortPos;
                 break;
             default:
                 break;
@@ -29,13 +29,15 @@ public class ContextMenuScript : MonoBehaviour
     
     private void handleMouseUp(int key) {
         Vector3 mousePos = Input.mousePosition;
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePos);
+        Vector3 mouseViewPortPos = Camera.main.ScreenToViewportPoint(new Vector3(mousePos.x, -mousePos.y, mousePos.z));
 
         switch(key) {
             case 1:
-                if(oldMouseWorldPos == mouseWorldPos) {
-                    contextMenuWindow.transform.position = mouseWorldPos;
-                    contextMenuWindow.SetActive(true);
+                if(oldMouseViewPortPos == mouseViewPortPos) {
+					contextMenuWindow.SetActive(true);
+					Vector3 newPos = new Vector3(mouseViewPortPos.x * Camera.main.pixelWidth, (mouseViewPortPos.y * Camera.main.pixelHeight) + Camera.main.pixelHeight, 0);
+					Debug.Log(newPos);
+					contextMenuWindow.GetComponent<UIDocument>().rootVisualElement.transform.position = newPos;
                 }
                 break;
             default:
