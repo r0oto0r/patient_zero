@@ -5,12 +5,12 @@ using UnityEngine.Tilemaps;
 
 public class MapScript : MonoBehaviour
 {
-    public Tilemap groundLayer;
-    public Tilemap[] objectLayers;
-	public RuleTile grassTileBase;
-    public RuleTile objGrassTileBase;
-    public int mapWidth = 256;
-    public int mapHeight = 256;
+    public Tilemap GroundLayer;
+    public Tilemap[] ObjectLayers;
+	public RuleTile GrassTileBase;
+    public RuleTile ObjGrassTileBase;
+    public int MapWidth = 256;
+    public int MapHeight = 256;
     private GameObject [,] groundTiles;
     private GameObject [,,] objectTiles;
 
@@ -27,7 +27,7 @@ public class MapScript : MonoBehaviour
     }
 
     public GameObject GetGroundTileAt(Vector3Int pos) {
-        if(pos.x < mapWidth && pos.y < mapHeight) {
+        if(pos.x < MapWidth && pos.y < MapHeight) {
             return groundTiles[pos.x, pos.y];
         }
 
@@ -35,9 +35,9 @@ public class MapScript : MonoBehaviour
     }
 
     public GameObject[] GetObjectsAt(Vector3Int pos) {
-        if(pos.x < mapWidth && pos.y < mapHeight) {
+        if(pos.x < MapWidth && pos.y < MapHeight) {
             List<GameObject> gameObjects = new List<GameObject>();
-            for(int i = 0; i < objectLayers.Length; ++i) {
+            for(int i = 0; i < ObjectLayers.Length; ++i) {
                 GameObject objectAtTile = objectTiles[i, pos.x, pos.y];
                 if(objectAtTile) {
                     gameObjects.Add(objectAtTile);
@@ -52,8 +52,8 @@ public class MapScript : MonoBehaviour
 
     public int GetObjectCount(Vector3Int pos) {
         int total = 0;
-        if(pos.x < mapWidth && pos.y < mapHeight) {
-            for(int i = 0; i < objectLayers.Length; ++i) {
+        if(pos.x < MapWidth && pos.y < MapHeight) {
+            for(int i = 0; i < ObjectLayers.Length; ++i) {
                 if(objectTiles[i, pos.x, pos.y]) {
                     total++;
                 }
@@ -100,26 +100,26 @@ public class MapScript : MonoBehaviour
 
     void Start()
     {
-        groundTiles = new GameObject[mapWidth, mapHeight];
-        objectTiles = new GameObject[objectLayers.Length, mapWidth, mapHeight];
+        groundTiles = new GameObject[MapWidth, MapHeight];
+        objectTiles = new GameObject[ObjectLayers.Length, MapWidth, MapHeight];
 
-        for(int i = 0; i < mapWidth; ++i) {
-            for(int j = 0; j< mapHeight; ++j) {
+        for(int i = 0; i < MapWidth; ++i) {
+            for(int j = 0; j< MapHeight; ++j) {
                 Vector3Int curPos = new Vector3Int(i, j);
-                if(!groundLayer.HasTile(curPos)) {
-                    groundLayer.SetTile(curPos, grassTileBase);
+                if(!GroundLayer.HasTile(curPos)) {
+                    GroundLayer.SetTile(curPos, GrassTileBase);
                 }
-                groundTiles[i, j] = groundLayer.GetInstantiatedObject(curPos);
+                groundTiles[i, j] = GroundLayer.GetInstantiatedObject(curPos);
                 
-                for(int k = 0; k < objectLayers.Length; ++k) {
-                    if(!objectLayers[k].HasTile(curPos)) {
+                for(int k = 0; k < ObjectLayers.Length; ++k) {
+                    if(!ObjectLayers[k].HasTile(curPos)) {
                         if(k == 0 && Random.Range(0, 3) == 1) {
-                            if(objectCanBePlaced(objGrassTileBase.m_DefaultGameObject.GetComponent<ObjectTileScript>(), groundTiles[i, j].GetComponent<GroundTileScript>())) {
-                                objectLayers[k].SetTile(curPos, objGrassTileBase);
+                            if(objectCanBePlaced(ObjGrassTileBase.m_DefaultGameObject.GetComponent<ObjectTileScript>(), groundTiles[i, j].GetComponent<GroundTileScript>())) {
+                                ObjectLayers[k].SetTile(curPos, ObjGrassTileBase);
                             }
                         }
                     }
-                    objectTiles[k, i, j] = objectLayers[k].GetInstantiatedObject(curPos);
+                    objectTiles[k, i, j] = ObjectLayers[k].GetInstantiatedObject(curPos);
                 }
             }
         }

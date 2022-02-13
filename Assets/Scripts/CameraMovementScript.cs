@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CameraMovementScript : MonoBehaviour
 {
-    public MapScript mainMapScript;
-    public Grid mainGrid;
+    public MapScript MainMapScript;
+    public Grid MainGrid;
     private Camera mainCam;
     private bool scroll = false;
     private Vector3 bottom;
@@ -13,17 +13,17 @@ public class CameraMovementScript : MonoBehaviour
     private Vector3 top;
     private Vector3 right;
     private Vector3 cellSize;
-    public float mouseSensivity = 0.4f;
-    public float keyBoardSensivity = 0.1f;
+    public float MouseSensivity = 0.4f;
+    public float KeyBoardSensivity = 0.1f;
     void Start() {
         mainCam = GetComponent<Camera>();
 
-        bottom = mainGrid.CellToWorld(new Vector3Int(0, 0));
-        left = mainGrid.CellToWorld(new Vector3Int(0, mainMapScript.mapHeight - 1));
-        top = mainGrid.CellToWorld(new Vector3Int(mainMapScript.mapWidth - 1, mainMapScript.mapHeight - 1));
-        right = mainGrid.CellToWorld(new Vector3Int(mainMapScript.mapWidth - 1, 0));
+        bottom = MainGrid.CellToWorld(new Vector3Int(0, 0));
+        left = MainGrid.CellToWorld(new Vector3Int(0, MainMapScript.MapHeight - 1));
+        top = MainGrid.CellToWorld(new Vector3Int(MainMapScript.MapWidth - 1, MainMapScript.MapHeight - 1));
+        right = MainGrid.CellToWorld(new Vector3Int(MainMapScript.MapWidth - 1, 0));
 
-        cellSize = mainGrid.cellSize;
+        cellSize = MainGrid.cellSize;
     }
 
     void Update() {
@@ -38,21 +38,21 @@ public class CameraMovementScript : MonoBehaviour
             float translationX = Input.GetAxis("Mouse X");
             float translationY = Input.GetAxis("Mouse Y");
             Vector3 mousDirection = new Vector3(-translationX, -translationY);
-            transform.position = transform.position + (mousDirection * mouseSensivity);
+            transform.position = transform.position + (mousDirection * (mainCam.orthographicSize / 10) * MouseSensivity);
         } else {
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
             Vector3 keyBoardDirection = new Vector3(horizontal, vertical);
-            transform.position = transform.position + (keyBoardDirection * keyBoardSensivity);
+            transform.position = transform.position + (keyBoardDirection * (mainCam.orthographicSize / 10) * KeyBoardSensivity);
         }
 
-        if(Input.GetAxis("Mouse ScrollWheel") > 0) {
+        if(Input.GetAxis("Mouse ScrollWheel") > 0 || Input.GetKeyDown(KeyCode.PageUp)) {
             mainCam.orthographicSize -= 1;
             if(mainCam.orthographicSize < 3) {
                 mainCam.orthographicSize = 3;
             }
         }
-        if(Input.GetAxis("Mouse ScrollWheel") < 0) {
+        if(Input.GetAxis("Mouse ScrollWheel") < 0 || Input.GetKeyDown(KeyCode.PageDown)) {
             mainCam.orthographicSize += 1;
             if(mainCam.orthographicSize > 10) {
                 mainCam.orthographicSize = 10;

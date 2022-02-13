@@ -13,27 +13,31 @@ public class TileDetailsScript : MonoBehaviour
     public Grid mainGrid;
     public Tilemap groundLayer;
     public MapScript mapScript;
+    private ContextMenuScript contextMenuScript;
 	private bool tileDetailsWindowOpen = false;
     float timer = 0.0f;
 
     void Start()
     {
-		tileDetailsWindow.SetActive(false);
+        tileDetailsWindow.GetComponent<UIDocument>().rootVisualElement.style.display = DisplayStyle.None;
+        contextMenuScript = GetComponent<ContextMenuScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        VisualElement rootVisualElement = tileDetailsWindow.GetComponent<UIDocument>().rootVisualElement;
+
         if(tileDetailsWindowOpen) {
 			timer += Time.deltaTime;
 		}
 	
-		if(Input.GetMouseButtonDown(0)) {
+		if(Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0)) {
 			Vector3 mousePos = Input.mousePosition;
 			Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePos);
 			Vector3Int cellPos = groundLayer.WorldToCell(mouseWorldPos);
 
-            if(cellPos.x >= 0 && cellPos.y >= 0 && cellPos.x < mapScript.mapWidth && cellPos.y < mapScript.mapHeight && groundLayer.HasTile(cellPos)) {
+            if(!contextMenuScript.MousePosInWindow(mousePos) && cellPos.x >= 0 && cellPos.y >= 0 && cellPos.x < mapScript.MapWidth && cellPos.y < mapScript.MapHeight && groundLayer.HasTile(cellPos)) {
                 GameObject groundTile = mapScript.GetGroundTileAt(cellPos);
                 RuleTile groundRuleTile = groundLayer.GetTile<RuleTile>(cellPos);
 
@@ -46,10 +50,9 @@ public class TileDetailsScript : MonoBehaviour
                 tileIndicator.transform.position = cellCenterPosition;
                 tileIndicator.SetActive(true);
 
-                tileDetailsWindow.SetActive(true);
+                rootVisualElement.style.display = DisplayStyle.Flex;
                 tileDetailsWindowOpen = true;
 
-                VisualElement rootVisualElement = tileDetailsWindow.GetComponent<UIDocument>().rootVisualElement;
                 Label cellNameValueLabel = rootVisualElement.Q<Label>("TileNameValueLabel");
                 Label cellPosValueLabel = rootVisualElement.Q<Label>("TilePosValueLabel");
 				Label cellIsBlockedValueLabel = rootVisualElement.Q<Label>("TileIsBlockedValueLabel");
@@ -79,7 +82,7 @@ public class TileDetailsScript : MonoBehaviour
 				int seconds = (int) timer % 60;
 				if(seconds > 3) {
 					timer = 0f;
-					tileDetailsWindow.SetActive(false);
+                    rootVisualElement.style.display = DisplayStyle.None;
 					tileCursor.SetActive(false);
 					tileIndicator.SetActive(false);
 					tileDetailsWindowOpen = false;

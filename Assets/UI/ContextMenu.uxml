@@ -1,5 +1,3 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="ContextMenu" style="flex-grow: 0; background-color: rgba(45, 45, 45, 0.53); width: 150px; height: auto; position: relative; top: auto; right: auto; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; border-bottom-width: 3px; min-height: 150px; translate: 0 0;">
-        <ui:Button text="Move Here" display-tooltip-when-elided="true" />
-    </ui:VisualElement>
+    <ui:VisualElement name="ContextMenu" style="flex-grow: 0; background-color: rgba(45, 45, 45, 0.53); width: 150px; height: auto; position: relative; top: auto; right: auto; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; border-bottom-width: 3px; min-height: 150px; translate: 0 0;" />
 </ui:UXML>

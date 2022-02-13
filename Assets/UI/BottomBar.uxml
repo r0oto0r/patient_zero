@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="BottomBarRoot" style="flex-grow: 1; justify-content: flex-end; width: auto;">
+        <ui:VisualElement name="BottomBar" style="flex-grow: 0; background-color: rgba(45, 45, 45, 0.53); width: auto; height: 64px; position: relative; top: auto; right: auto; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; border-bottom-width: 3px; bottom: auto; justify-content: center; align-items: flex-end;">
+            <ui:Button text="Finish" display-tooltip-when-elided="true" name="RoundFinishButton" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
